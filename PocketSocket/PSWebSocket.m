@@ -183,6 +183,9 @@
         case NSURLNetworkServiceTypeVideo:
             networkServiceType = NSStreamNetworkServiceTypeVideo;
             break;
+
+        default:
+            NSAssert(false, @"Unhandled networkServiceType %ld", request.networkServiceType);
         }
         
         _inputStream = CFBridgingRelease(readStream);
