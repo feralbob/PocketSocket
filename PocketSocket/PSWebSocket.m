@@ -185,7 +185,7 @@
             break;
 
         default:
-            NSAssert(false, @"Unhandled networkServiceType %ld", request.networkServiceType);
+            NSAssert(false, @"Unhandled networkServiceType %tu", request.networkServiceType);
         }
         
         _inputStream = CFBridgingRelease(readStream);
