@@ -129,6 +129,14 @@ typedef NS_ENUM(NSInteger, PSWebSocketReadyState) {
  */
 - (void)closeWithCode:(NSInteger)code reason:(NSString *)reason;
 
+/**
+ Close the websocket with a specific code and/or reason and wait until the connection has been closed
+
+ @param code close code reason
+ @param reason short textual reason why the connection was closed
+ */
+- (void)closeAndWaitWithCode:(NSInteger)code reason:(NSString *)reason;
+
 #pragma mark - Stream Properties
 
 /**

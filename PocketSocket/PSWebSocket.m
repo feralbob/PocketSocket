@@ -249,38 +249,46 @@
     [self closeWithCode:1000 reason:nil];
 }
 - (void)closeWithCode:(NSInteger)code reason:(NSString *)reason {
-    [self executeWorkAndWait:^{
-        // already closing so lets exit
-        if(_readyState >= PSWebSocketReadyStateClosing) {
-            return;
-        }
-        
-        BOOL connecting = (_readyState == PSWebSocketReadyStateConnecting);
-        _readyState = PSWebSocketReadyStateClosing;
-        
-        // send close code if we're not connecting
-        if(!connecting) {
-            _closeCode = code;
-            [_driver sendCloseCode:code reason:reason];
-        }
-        
-        // disconnect gracefully
-        [self disconnectGracefully];
-        
-        // disconnect hard in 30 seconds
-        __weak typeof(self)weakSelf = self;
-        dispatch_after(dispatch_walltime(DISPATCH_TIME_NOW, 30 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            __strong typeof(weakSelf)strongSelf = weakSelf;
-            if(!strongSelf) return;
-            
-            [strongSelf executeWork:^{
-                if(strongSelf->_readyState >= PSWebSocketReadyStateClosed) {
-                    return;
-                }
-                [strongSelf disconnect];
-            }];
-        });
+    [self executeWork:^{
+        [self _closeWithCode:code reason:reason];
     }];
+}
+- (void)closeAndWaitWithCode:(NSInteger)code reason:(NSString *)reason {
+    [self executeWorkAndWait:^{
+        [self _closeWithCode:code reason:reason];
+    }];
+}
+- (void)_closeWithCode:(NSInteger)code reason:(NSString *)reason {
+    // already closing so lets exit
+    if(_readyState >= PSWebSocketReadyStateClosing) {
+        return;
+    }
+    
+    BOOL connecting = (_readyState == PSWebSocketReadyStateConnecting);
+    _readyState = PSWebSocketReadyStateClosing;
+    
+    // send close code if we're not connecting
+    if(!connecting) {
+        _closeCode = code;
+        [_driver sendCloseCode:code reason:reason];
+    }
+    
+    // disconnect gracefully
+    [self disconnectGracefully];
+    
+    // disconnect hard in 30 seconds
+    __weak typeof(self)weakSelf = self;
+    dispatch_after(dispatch_walltime(DISPATCH_TIME_NOW, 30 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        if(!strongSelf) return;
+        
+        [strongSelf executeWork:^{
+            if(strongSelf->_readyState >= PSWebSocketReadyStateClosed) {
+                return;
+            }
+            [strongSelf disconnect];
+        }];
+    });
 }
 
 #pragma mark - Stream Properties
