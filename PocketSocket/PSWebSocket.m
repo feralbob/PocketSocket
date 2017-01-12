@@ -249,7 +249,7 @@
     [self closeWithCode:1000 reason:nil];
 }
 - (void)closeWithCode:(NSInteger)code reason:(NSString *)reason {
-    [self executeWork:^{
+    [self executeWorkAndWait:^{
         // already closing so lets exit
         if(_readyState >= PSWebSocketReadyStateClosing) {
             return;
