@@ -185,7 +185,7 @@
             break;
 
         default:
-            NSAssert(false, @"Unhandled networkServiceType %ld", request.networkServiceType);
+            NSAssert(false, @"Unhandled networkServiceType %tu", request.networkServiceType);
         }
         
         _inputStream = CFBridgingRelease(readStream);
@@ -228,6 +228,11 @@
 - (void)send:(id)message {
     NSParameterAssert(message);
     [self executeWork:^{
+        if(!_opened || _readyState == PSWebSocketReadyStateConnecting) {
+            [NSException raise:@"Invalid State" format:@"You cannot send a PSWebSocket messages before it is finished opening."];
+            return;
+        }
+        
         if([message isKindOfClass:[NSString class]]) {
             [_driver sendText:message];
         } else if([message isKindOfClass:[NSData class]]) {
@@ -250,37 +255,45 @@
 }
 - (void)closeWithCode:(NSInteger)code reason:(NSString *)reason {
     [self executeWork:^{
-        // already closing so lets exit
-        if(_readyState >= PSWebSocketReadyStateClosing) {
-            return;
-        }
-        
-        BOOL connecting = (_readyState == PSWebSocketReadyStateConnecting);
-        _readyState = PSWebSocketReadyStateClosing;
-        
-        // send close code if we're not connecting
-        if(!connecting) {
-            _closeCode = code;
-            [_driver sendCloseCode:code reason:reason];
-        }
-        
-        // disconnect gracefully
-        [self disconnectGracefully];
-        
-        // disconnect hard in 30 seconds
-        __weak typeof(self)weakSelf = self;
-        dispatch_after(dispatch_walltime(DISPATCH_TIME_NOW, 30 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            __strong typeof(weakSelf)strongSelf = weakSelf;
-            if(!strongSelf) return;
-            
-            [strongSelf executeWork:^{
-                if(strongSelf->_readyState >= PSWebSocketReadyStateClosed) {
-                    return;
-                }
-                [strongSelf disconnect];
-            }];
-        });
+        [self _closeWithCode:code reason:reason];
     }];
+}
+- (void)closeAndWaitWithCode:(NSInteger)code reason:(NSString *)reason {
+    [self executeWorkAndWait:^{
+        [self _closeWithCode:code reason:reason];
+    }];
+}
+- (void)_closeWithCode:(NSInteger)code reason:(NSString *)reason {
+    // already closing so lets exit
+    if(_readyState >= PSWebSocketReadyStateClosing) {
+        return;
+    }
+    
+    BOOL connecting = (_readyState == PSWebSocketReadyStateConnecting);
+    _readyState = PSWebSocketReadyStateClosing;
+    
+    // send close code if we're not connecting
+    if(!connecting) {
+        _closeCode = code;
+        [_driver sendCloseCode:code reason:reason];
+    }
+    
+    // disconnect gracefully
+    [self disconnectGracefully];
+    
+    // disconnect hard in 30 seconds
+    __weak typeof(self)weakSelf = self;
+    dispatch_after(dispatch_walltime(DISPATCH_TIME_NOW, 30 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        __strong typeof(weakSelf)strongSelf = weakSelf;
+        if(!strongSelf) return;
+        
+        [strongSelf executeWork:^{
+            if(strongSelf->_readyState >= PSWebSocketReadyStateClosed) {
+                return;
+            }
+            [strongSelf disconnect];
+        }];
+    });
 }
 
 #pragma mark - Stream Properties

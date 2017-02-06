@@ -57,8 +57,8 @@ typedef NS_ENUM(NSInteger, PSWebSocketReadyState) {
 + (BOOL)isWebSocketRequest:(NSURLRequest *)request;
 
 #pragma mark - Properties
-
-
+@property (nonatomic, readonly) NSData *remoteAddress;
+@property (nonatomic, strong, readonly) NSURLRequest *request;
 @property (nonatomic, assign, readonly) PSWebSocketReadyState readyState;
 @property (nonatomic, weak) id <PSWebSocketDelegate> delegate;
 @property (nonatomic, strong) dispatch_queue_t delegateQueue;
@@ -128,6 +128,14 @@ typedef NS_ENUM(NSInteger, PSWebSocketReadyState) {
  *  @param reason short textual reason why the connection was closed
  */
 - (void)closeWithCode:(NSInteger)code reason:(NSString *)reason;
+
+/**
+ Close the websocket with a specific code and/or reason and wait until the connection has been closed
+
+ @param code close code reason
+ @param reason short textual reason why the connection was closed
+ */
+- (void)closeAndWaitWithCode:(NSInteger)code reason:(NSString *)reason;
 
 #pragma mark - Stream Properties
 
