@@ -333,7 +333,6 @@ typedef NS_ENUM(NSInteger, PSWebSocketDriverState) {
         
         // begin deflater
         if(![_deflater begin:deflated error:&error]) {
-            NSAssert(NO, error.localizedDescription);
             [self failWithError:error];
             [_deflater reset];
             return;
@@ -341,7 +340,6 @@ typedef NS_ENUM(NSInteger, PSWebSocketDriverState) {
         
         // append bytes
         if(![_deflater appendBytes:[payload bytes] length:[payload length] error:&error]) {
-            NSAssert(NO, error.localizedDescription);
             [self failWithError:error];
             [_deflater reset];
             return;
@@ -349,7 +347,6 @@ typedef NS_ENUM(NSInteger, PSWebSocketDriverState) {
         
         // end deflater
         if(![_deflater end:&error]) {
-            NSAssert(NO, error.localizedDescription);
             [self failWithError:error];
             [_deflater reset];
             return;
