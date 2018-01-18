@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "275D3AD91B02811E0013B9A9"
-               BuildableName = "libPocketSocket.a"
+               BlueprintIdentifier = "222E0F80200FA09C00CC511F"
+               BuildableName = "PocketSocket_Mac.framework"
                BlueprintName = "PocketSocket-Mac"
                ReferencedContainer = "container:PocketSocket.xcodeproj">
             </BuildableReference>
@@ -29,7 +29,26 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "222E0FC2200FA59D00CC511F"
+               BuildableName = "PSAutobahnClientTests.xctest"
+               BlueprintName = "PSAutobahnClientTests"
+               ReferencedContainer = "container:PocketSocket.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "222E0F80200FA09C00CC511F"
+            BuildableName = "PocketSocket_Mac.framework"
+            BlueprintName = "PocketSocket-Mac"
+            ReferencedContainer = "container:PocketSocket.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -47,8 +66,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "275D3AD91B02811E0013B9A9"
-            BuildableName = "libPocketSocket.a"
+            BlueprintIdentifier = "222E0F80200FA09C00CC511F"
+            BuildableName = "PocketSocket_Mac.framework"
             BlueprintName = "PocketSocket-Mac"
             ReferencedContainer = "container:PocketSocket.xcodeproj">
          </BuildableReference>
@@ -65,8 +84,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "275D3AD91B02811E0013B9A9"
-            BuildableName = "libPocketSocket.a"
+            BlueprintIdentifier = "222E0F80200FA09C00CC511F"
+            BuildableName = "PocketSocket_Mac.framework"
             BlueprintName = "PocketSocket-Mac"
             ReferencedContainer = "container:PocketSocket.xcodeproj">
          </BuildableReference>

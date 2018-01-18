@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "222E0F5F200EB68000CC511F"
-               BuildableName = "PocketSocket.framework"
-               BlueprintName = "PocketSocket"
+               BlueprintIdentifier = "222E0FB4200FA3B800CC511F"
+               BuildableName = "PocketSocket_iOS.framework"
+               BlueprintName = "PocketSocket-iOS"
                ReferencedContainer = "container:PocketSocket.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,7 +29,26 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "222E0FC2200FA59D00CC511F"
+               BuildableName = "PSAutobahnClientTests.xctest"
+               BlueprintName = "PSAutobahnClientTests"
+               ReferencedContainer = "container:PocketSocket.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "222E0FB4200FA3B800CC511F"
+            BuildableName = "PocketSocket_iOS.framework"
+            BlueprintName = "PocketSocket-iOS"
+            ReferencedContainer = "container:PocketSocket.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -47,9 +66,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "222E0F5F200EB68000CC511F"
-            BuildableName = "PocketSocket.framework"
-            BlueprintName = "PocketSocket"
+            BlueprintIdentifier = "222E0FB4200FA3B800CC511F"
+            BuildableName = "PocketSocket_iOS.framework"
+            BlueprintName = "PocketSocket-iOS"
             ReferencedContainer = "container:PocketSocket.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,9 +84,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "222E0F5F200EB68000CC511F"
-            BuildableName = "PocketSocket.framework"
-            BlueprintName = "PocketSocket"
+            BlueprintIdentifier = "222E0FB4200FA3B800CC511F"
+            BuildableName = "PocketSocket_iOS.framework"
+            BlueprintName = "PocketSocket-iOS"
             ReferencedContainer = "container:PocketSocket.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

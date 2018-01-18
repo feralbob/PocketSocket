@@ -4,3 +4,4 @@ xcuserdata/
 /build/
 fuzzingserver.json
 reports
+.python-version
