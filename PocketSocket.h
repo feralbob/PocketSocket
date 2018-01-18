@@ -6,7 +6,7 @@
 //  Copyright © 2018 WillowTree, Inc. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for PocketSocket.
 FOUNDATION_EXPORT double PocketSocketVersionNumber;
@@ -14,5 +14,5 @@ FOUNDATION_EXPORT double PocketSocketVersionNumber;
 //! Project version string for PocketSocket.
 FOUNDATION_EXPORT const unsigned char PocketSocketVersionString[];
 
-#import <PocketSocket/PSWebSocket.h>
-#import <PocketSocket/PSWebSocketServer.h>
+#import <PSWebSocket.h>
+#import <PSWebSocketServer.h>
