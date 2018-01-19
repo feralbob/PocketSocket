@@ -1,6 +1,0 @@
-framework module Foo {
-    umbrella header "PocketSocket.h"
-    
-    export *
-    module * { export * }
-}

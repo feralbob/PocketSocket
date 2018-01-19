@@ -14,5 +14,6 @@ FOUNDATION_EXPORT double PocketSocketVersionNumber;
 //! Project version string for PocketSocket.
 FOUNDATION_EXPORT const unsigned char PocketSocketVersionString[];
 
-#import <PSWebSocket.h>
-#import <PSWebSocketServer.h>
+#import "PSWebSocket.h"
+#import "PSWebSocketServer.h"
+#import "PSWebSocketTypes.h"
