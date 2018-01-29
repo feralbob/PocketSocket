@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "222E0F80200FA09C00CC511F"
-               BuildableName = "PocketSocket_Mac.framework"
+               BuildableName = "PocketSocket.framework"
                BlueprintName = "PocketSocket-Mac"
                ReferencedContainer = "container:PocketSocket.xcodeproj">
             </BuildableReference>
@@ -44,7 +44,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "222E0F80200FA09C00CC511F"
-            BuildableName = "PocketSocket_Mac.framework"
+            BuildableName = "PocketSocket.framework"
             BlueprintName = "PocketSocket-Mac"
             ReferencedContainer = "container:PocketSocket.xcodeproj">
          </BuildableReference>
@@ -67,7 +67,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "222E0F80200FA09C00CC511F"
-            BuildableName = "PocketSocket_Mac.framework"
+            BuildableName = "PocketSocket.framework"
             BlueprintName = "PocketSocket-Mac"
             ReferencedContainer = "container:PocketSocket.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "222E0F80200FA09C00CC511F"
-            BuildableName = "PocketSocket_Mac.framework"
+            BuildableName = "PocketSocket.framework"
             BlueprintName = "PocketSocket-Mac"
             ReferencedContainer = "container:PocketSocket.xcodeproj">
          </BuildableReference>
