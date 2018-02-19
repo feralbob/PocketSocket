@@ -61,7 +61,7 @@
 - (PSWebSocketReadyState)readyState {
     __block PSWebSocketReadyState value = 0;
     [self executeWorkAndWait:^{
-        value = self.readyState;
+        value = self->_readyState;
     }];
     return value;
 }
@@ -79,14 +79,14 @@
 - (BOOL)isInputPaused {
     __block BOOL result;
     [self executeWorkAndWait:^{
-        result = self.inputPaused;
+        result = self->_inputPaused;
     }];
     return result;
 }
 - (void)setInputPaused:(BOOL)inputPaused {
     [self executeWorkAndWait:^{
-        if (inputPaused != self.inputPaused) {
-            self.inputPaused = inputPaused;
+        if (inputPaused != self->_inputPaused) {
+            self->_inputPaused = inputPaused;
             if (!inputPaused) {
                 [self pumpInput];
             }
@@ -97,14 +97,14 @@
 - (BOOL)isOutputPaused {
     __block BOOL result;
     [self executeWorkAndWait:^{
-        result = self.outputPaused;
+        result = self->_outputPaused;
     }];
     return result;
 }
 - (void)setOutputPaused:(BOOL)outputPaused {
     [self executeWorkAndWait:^{
-        if (outputPaused != self.outputPaused) {
-            self.outputPaused = outputPaused;
+        if (outputPaused != self->_outputPaused) {
+            self->_outputPaused = outputPaused;
             if (!outputPaused) {
                 [self pumpOutput];
             }
@@ -217,7 +217,7 @@
 
 - (void)open {
     [self executeWork:^{
-        if(self->_opened || self.readyState != PSWebSocketReadyStateConnecting) {
+        if(self->_opened || self->_readyState != PSWebSocketReadyStateConnecting) {
             [NSException raise:@"Invalid State" format:@"You cannot open a PSWebSocket more than once."];
             return;
         }
@@ -231,7 +231,7 @@
 - (void)send:(id)message {
     NSParameterAssert(message);
     [self executeWork:^{
-        if(!self->_opened || self.readyState == PSWebSocketReadyStateConnecting) {
+        if(!self->_opened || self->_readyState == PSWebSocketReadyStateConnecting) {
             [NSException raise:@"Invalid State" format:@"You cannot send a PSWebSocket messages before it is finished opening."];
             return;
         }
@@ -310,7 +310,7 @@
 }
 - (void)setStreamProperty:(CFTypeRef)property forKey:(NSString *)key {
     [self executeWorkAndWait:^{
-        if(self->_opened || self.readyState != PSWebSocketReadyStateConnecting) {
+        if(self->_opened || self->_readyState != PSWebSocketReadyStateConnecting) {
             [NSException raise:@"Invalid State" format:@"You cannot set stream properties on a PSWebSocket once it is opened."];
             return;
         }
@@ -523,7 +523,7 @@
         }];
     } else {
         [self executeWork:^{
-            if(self.readyState != PSWebSocketReadyStateClosed) {
+            if(self->_readyState != PSWebSocketReadyStateClosed) {
                 self->_failed = YES;
                 self->_readyState = PSWebSocketReadyStateClosed;
                 [self notifyDelegateDidFailWithError:error];
